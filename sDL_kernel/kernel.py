@@ -55,7 +55,7 @@ class IREPLWrapper(replwrap.REPLWrapper):
         return pos
 
 class BashKernel(Kernel):
-    implementation = 'bash_kernel'
+    implementation = 'sDL_kernel'
     implementation_version = __version__
 
     @property
@@ -71,7 +71,7 @@ class BashKernel(Kernel):
             self._banner = check_output(['bash', '--version']).decode('utf-8')
         return self._banner
 
-    language_info = {'name': 'bash',
+    language_info = {'name': 'sDL',
                      'codemirror_mode': 'shell',
                      'mimetype': 'text/x-sh',
                      'file_extension': '.sh'}
@@ -148,7 +148,7 @@ class BashKernel(Kernel):
             output = self.bashwrapper.child.before
             self.process_output(output)
         except EOF:
-            output = self.bashwrapper.child.before + 'Restarting Bash'
+            output = self.bashwrapper.child.before + 'Restarting sDL'
             self._start_bash()
             self.process_output(output)
 
